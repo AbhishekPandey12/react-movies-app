@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
-import { getThemeProps } from "@material-ui/styles";
+import PropTypes from 'prop-types';
 
 const customStyle = {
     content: {
@@ -25,10 +25,14 @@ const customStyle = {
 
 const TabContainer = (props) => {
     return (
-        <Typography component="div" style={{ padding: 0 }}>
+        <Typography component="div" style={{ padding: 0, textAlign:'center' }}>
             {props.children}
         </Typography>
     );
+}
+
+TabContainer.propTypes = {
+    children: PropTypes.node.isRequired
 }
 
 class Header extends Component {
@@ -70,20 +74,22 @@ class Header extends Component {
                     contentLabel="Login"
                     onRequestClose={this.closeModalHandler}
                     style={customStyle}>
-                    <Tabs value={this.state.value} onChange={this.tabChangeHandler} >
+                    <Tabs className="tabs" value={this.state.value} onChange={this.tabChangeHandler} >
                         <Tab label="Login" />
                         <Tab label="Register" />
                     </Tabs>
+                    { this.state.value === 0 && 
                     <TabContainer>
                         <FormControl required>
                             <InputLabel htmlFor="userName"> Username </InputLabel>
                             <Input id="username" type="text" />
-                        </FormControl>
+                        </FormControl><br/><br/>
                         <FormControl required>
                             <InputLabel htmlFor="password"> Password </InputLabel>
                             <Input id="password" type="text" />
-                        </FormControl>
-                    </TabContainer>
+                        </FormControl><br/><br/>
+                        <Button variant="contained" color="primary">LOGIN</Button>
+                    </TabContainer> }
                 </Modal>
             </div>
         )
