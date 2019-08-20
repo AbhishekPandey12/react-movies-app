@@ -19,6 +19,7 @@ import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Checkbox, ListItemText } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
     root: {
@@ -56,7 +57,7 @@ class Home extends Component {
         super();
         this.state = {
             movieName: '',
-            genres:[],
+            genres: [],
             artists: []
         }
     }
@@ -66,11 +67,11 @@ class Home extends Component {
     }
 
     genreSelectHandler = event => {
-        this.setState({genres: event.target.value})
+        this.setState({ genres: event.target.value })
     }
 
     artistSelectHandler = event => {
-        this.setState({artists: event.target.value})
+        this.setState({ artists: event.target.value })
     }
 
     render() {
@@ -152,6 +153,15 @@ class Home extends Component {
                                             </MenuItem>
                                         ))}
                                     </Select>
+                                </FormControl>
+                                <FormControl className={classes.formControl}>
+                                    <TextField
+                                        id="releaseDateStart"
+                                        label="Release Date Start"
+                                        type="date"
+                                        defaultValue=""
+                                        InputLabelProps={{ shrink: true }}
+                                    />
                                 </FormControl>
                             </CardContent>
                         </Card>
