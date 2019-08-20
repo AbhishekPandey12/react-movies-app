@@ -18,7 +18,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Checkbox, ListItemText } from "@material-ui/core";
+import { Checkbox, ListItemText, Button } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
@@ -171,6 +171,12 @@ class Home extends Component {
                                         defaultValue=""
                                         InputLabelProps={{ shrink: true }}
                                     />
+                                </FormControl>
+                                <br /><br />
+                                <FormControl className={classes.formControl}>
+                                    <Button variant="contained" color="primary">
+                                        APPLY
+                                    </Button>
                                 </FormControl>
                             </CardContent>
                         </Card>
