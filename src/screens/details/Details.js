@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
+
 import Header from '../../common/header/Header';
 import moviesData from '../../common/movieData';
 import Typography from '@material-ui/core/Typography';
 import './Details.css';
-import Home from '../home/Home';
 import YouTube from 'react-youtube';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -18,44 +18,40 @@ class Details extends Component {
             movie: {},
             starIcons: [
                 {
-                   id: 1,
-                   stateId: "star1",
-                   color: "black"
+                    id: 1,
+                    stateId: "star1",
+                    color: "black"
                 },
                 {
-                   id: 2,
-                   stateId: "star2",
-                   color: "black"
+                    id: 2,
+                    stateId: "star2",
+                    color: "black"
                 },
                 {
-                   id: 3,
-                   stateId: "star3",
-                   color: "black"
+                    id: 3,
+                    stateId: "star3",
+                    color: "black"
                 },
                 {
-                   id: 4,
-                   stateId: "star4",
-                   color: "black"
+                    id: 4,
+                    stateId: "star4",
+                    color: "black"
                 },
                 {
-                   id: 5,
-                   stateId: "star5",
-                   color: "black"
+                    id: 5,
+                    stateId: "star5",
+                    color: "black"
                 }
-             ]
+            ]
         }
     }
 
     componentWillMount() {
         let currentState = this.state;
         currentState.movie = moviesData.filter((mov) => {
-            return mov.id === this.props.movieId
+            return mov.id === this.props.match.params.id
         })[0];
         this.setState({ currentState });
-    }
-
-    backToHomeHandler = () => {
-        ReactDOM.render(<Home />, document.getElementById('root'));
     }
 
     artistClickHandler = (url) => {
@@ -89,10 +85,10 @@ class Details extends Component {
         }
         return (
             <div className="details">
-                <Header showBookShowButton="true"  />
+                <Header id={this.props.match.params.id} showBookShowButton="true" />
                 <div className="back">
-                    <Typography onClick={this.backToHomeHandler}>
-                        &#60; Back to Home
+                    <Typography>
+                        <Link to="/">  &#60; Back to Home</Link>
                     </Typography>
                 </div>
                 <div className="flex-containerDetails">
@@ -133,7 +129,7 @@ class Details extends Component {
                         </div>
                     </div>
                     <div className="rightDetails">
-                    <Typography>
+                        <Typography>
                             <span className="bold">Rate this movie: </span>
                         </Typography>
                         {this.state.starIcons.map(star => (
